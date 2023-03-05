@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>3D-vs</title>
+        <meta charset="utf-8" />
+        <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+
+        <!-- //VERY HANDY! https://socket.io/docs/v3/emit-cheatsheet/  -->
+        <!-- since we are going to put teh socket.io code in a component to make sure aframe is loaded before
+        we start doing anything it, we will put the code in the header so that teh component "exists" before we 
+        use it as an attribute on a-scene -->
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            AFRAME.registerComponent('experience-manager', {
+                init: function () {
+                    const socket = io();
+
+                socket.on('connect', (userData) => {
+                    console.log('I exist!');
+
+                    //put code here so that we know that socket.io has initailized ...
+
+                    document.querySelector('#box1').addEventListener('click', function(){
+                        socket.emit('button1click');
+                    });
+                    
+                    document.querySelector('#box1').addEventListener('mouseenter', function(){
+                        socket.emit('button1dblclick');
+                    });
+
+                    document.querySelector('#box2').addEventListener('click', function(){
+                        socket.emit('button2click');
+                    });
+                    
+                    document.querySelector('#box2').addEventListener('mouseenter', function(){
+                        socket.emit('button2dblclick');
+                    });
+
+                    document.querySelector('#box3').addEventListener('click', function(){
+                        socket.emit('button3click');
+                    });
+                    
+                    document.querySelector('#box3').addEventListener('mouseenter', function(){
+                        socket.emit('button3dblclick');
+                    });
+
+                    document.querySelector('#box4').addEventListener('click', function(){
+                        socket.emit('button4click');
+                    });
+                    
+                    document.querySelector('#box4').addEventListener('mouseenter', function(){
+                        socket.emit('button4dblclick');
+                    });
+
+                    document.querySelector('#box5').addEventListener('click', function(){
+                        socket.emit('button5click');
+                    });
+                    
+                    document.querySelector('#box5').addEventListener('mouseenter', function(){
+                        socket.emit('button5dblclick');
+                    });
+
+                    document.querySelector('#box6').addEventListener('click', function(){
+                        socket.emit('button6click');
+                    });
+                    
+                    document.querySelector('#box6').addEventListener('mouseenter', function(){
+                        socket.emit('button6dblclick');
+                    });
+
+                    document.querySelector('#box7').addEventListener('click', function(){
+                        socket.emit('button7click');
+                    });
+                    
+                    document.querySelector('#box7').addEventListener('mouseenter', function(){
+                        socket.emit('button7dblclick');
+                    });
+
+                    document.querySelector('#box8').addEventListener('click', function(){
+                        socket.emit('button8click');
+                    });
+                    
+                    document.querySelector('#box8').addEventListener('mouseenter', function(){
+                        socket.emit('button8dblclick');
+                    });
+
+                    document.querySelector('#box9').addEventListener('click', function(){
+                        socket.emit('button9click');
+                    });
+                    
+                    document.querySelector('#box9').addEventListener('mouseenter', function(){
+                        socket.emit('button9dblclick');
+                    });
+
+                });
+
+                //listen to event from server
+                socket.on('button1_color_change', (data) => {
+                    let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
+                    console.log('color_change:' + colorStr);
+                    document.querySelector('#box1').setAttribute('material', {color:colorStr});
+                });
+
+                socket.on('button2_color_change', (data) => {
+                    let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
+                    console.log('color_change:' + colorStr);
+                    document.querySelector('#box2').setAttribute('material', {color:colorStr});
+                });
+
+                socket.on('button3_color_change', (data) => {
+                    let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
+                    console.log('color_change:' + colorStr);
+                    document.querySelector('#box3').setAttribute('material', {color:colorStr});
+                });
+
+                socket.on('button4_color_change', (data) => {
+                    let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
+                    console.log('color_change:' + colorStr);
+                    document.querySelector('#box4').setAttribute('material', {color:colorStr});
+                });
+
+                socket.on('button5_color_change', (data) => {
+                    let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
+                    console.log('color_change:' + colorStr);
+                    document.querySelector('#box5').setAttribute('material', {color:colorStr});
+                });
+
+                socket.on('button6_color_change', (data) => {
+                    let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
+                    console.log('color_change:' + colorStr);
+                    document.querySelector('#box6').setAttribute('material', {color:colorStr});
+                });
+
+                socket.on('button7_color_change', (data) => {
+                    let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
+                    console.log('color_change:' + colorStr);
+                    document.querySelector('#box7').setAttribute('material', {color:colorStr});
+                });
+
+                socket.on('button8_color_change', (data) => {
+                    let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
+                    console.log('color_change:' + colorStr);
+                    document.querySelector('#box8').setAttribute('material', {color:colorStr});
+                });
+
+                socket.on('button9_color_change', (data) => {
+                    let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
+                    console.log('color_change:' + colorStr);
+                    document.querySelector('#box9').setAttribute('material', {color:colorStr});
+                });
+
+
+                }
+            })
+        </script>
+
+    </head>
+
+    <body>
+        <!-- our buttond to tell others -->
+        <!-- <button id="red" style="background-color:rgb(255, 0, 0); color:rgb(255, 255, 255)">RED</button>
+        <button id="blue" style="background-color:rgb(0, 0, 255); color:rgb(255, 255, 255)">BLUE</button> -->
+
+        <a-scene experience-manager background="color:rgb(255, 255, 255);">
+            <a-entity position="0 -10 2">
+                <a-entity camera wasd-controls look-controls position="0 1.6 0">
+                    <!--adding a cursor component so that we can click on objects -->
+                   <!-- cursor documentation: https://github.com/aframevr/aframe/blob/master/docs/components/cursor.md -->
+                   <a-entity cursor="fuse: true; fuseTimeout: 500"
+                   id = "cursor"
+                   position="0 0 -1"
+                   geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                   material="color: black; shader: flat"
+                   animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+                   animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+                   animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1">
+                   </a-entity>
+                    <a-entity cursor="rayOrigin:mouse;" raycaster="far:20; interval:200; objects:.interactive"></a-entity>
+                </a-entity>
+    
+    
+                <a-entity position="0.2 3 -2" id="instructions" text="value:Tic Tac Toe: Interact with blocks to change block colours. Player 1: click, and Player: 2 Hover. Connect 3 in a row to win!; color:black" height="1.5" width="3" scale="3 3 3"></a-entity>
+            
+                <a-entity id="board" position="0 1.5 -0.5">
+                    <!--top row-->
+                    <a-box id = "box1" color="rgb(255,0,0)" position="-1 1 -2" height="0.5" width="0.5" depth="0.5"></a-box>
+                    <a-box id = "box2" color="rgb(255,0,0)" position="0 1 -2" height="0.5" width="0.5" depth="0.5"></a-box>
+                    <a-box id = "box3" color="rgb(255,0,0)" position="1 1 -2" height="0.5" width="0.5" depth="0.5"></a-box>
+
+                     <!--middle row-->
+                    <a-box id = "box4" color="rgb(255,0,0)" position="-1 0 -2" height="0.5" width="0.5" depth="0.5"></a-box>
+                    <a-box id = "box5" color="rgb(255,0,0)" position="0 0 -2" height="0.5" width="0.5" depth="0.5"></a-box>
+                    <a-box id = "box6" color="rgb(255,0,0)" position="1 0 -2" height="0.5" width="0.5" depth="0.5"></a-box>
+        
+                    <!--bottom row-->
+                    <a-box id = "box7" color="rgb(255,0,0)" position="-1 -1 -2" height="0.5" width="0.5" depth="0.5"></a-box>
+                    <a-box id = "box8" color="rgb(255,0,0)" position="0 -1 -2" height="0.5" width="0.5" depth="0.5"></a-box>
+                    <a-box id = "box9" color="rgb(255,0,0)" position="1 -1 -2" height="0.5" width="0.5" depth="0.5"></a-box>
+
+                </a-entity>
+               
+
+            </a-entity>
+   
+
+
+        </a-scene>
+    </body>
+</html>

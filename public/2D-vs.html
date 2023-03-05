@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>2D vs</title>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+        <p>Tic Tac Toe: Interact with buttons to change button colours. Player 1: Click, and Player: 2 Double click. Connect 3 in a row to win!</p>
+
+        <button id="button1" style="background-color:rgb(255,255,255); height:50px;width:50px"></button>
+        <button id="button2" style="background-color:rgb(255,255,255); height:50px;width:50px"></button>
+        <button id="button3" style="background-color:rgb(255,255,255); height:50px;width:50px"></button>
+
+
+        <button id="button4" style="background-color:rgb(255,255,255); height:50px;width:50px; position:relative; top:55px; left:-162px"></button>
+        <button id="button5" style="background-color:rgb(255,255,255); height:50px;width:50px; position:relative; top:55px; left:-162px"></button>
+        <button id="button6" style="background-color:rgb(255,255,255); height:50px;width:50px; position:relative; top:55px; left:-162px"></button>
+
+        <button id="button7" style="background-color:rgb(255,255,255); height:50px;width:50px; position:relative; top:110px; left:-324px"></button>
+        <button id="button8" style="background-color:rgb(255,255,255); height:50px;width:50px; position:relative; top:110px; left:-324px"></button>
+        <button id="button9" style="background-color:rgb(255,255,255); height:50px;width:50px; position:relative; top:110px; left:-324px"></button>
+
+        <!-- this is magic code created when the node server runs -->
+        <!-- //VERY HANDY! https://socket.io/docs/v3/emit-cheatsheet/  -->
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            let socket = io();
+
+            socket.on('connect', (userData) => {
+                console.log('I exist!');
+
+                //put code here so that we know that socket.io has initailized ...
+                document.querySelector('#button1').addEventListener('click', function(){
+                    console.log('button 1 clicked');
+                    socket.emit('button1click');
+                });
+
+                document.querySelector('#button1').addEventListener('dblclick', function(){
+                    socket.emit('button1dblclick');
+                });
+
+                document.querySelector('#button2').addEventListener('click', function(){
+                    socket.emit('button2click');
+                });
+
+                document.querySelector('#button2').addEventListener('dblclick', function(){
+                    socket.emit('button2dblclick');
+                });
+
+                document.querySelector('#button3').addEventListener('click', function(){
+                    socket.emit('button3click');
+                });
+
+                document.querySelector('#button3').addEventListener('dblclick', function(){
+                    socket.emit('button3dblclick');
+                });
+
+                document.querySelector('#button4').addEventListener('click', function(){
+                    socket.emit('button4click');
+                });
+
+                document.querySelector('#button4').addEventListener('dblclick', function(){
+                    socket.emit('button4dblclick');
+                });
+
+                document.querySelector('#button5').addEventListener('click', function(){
+                    socket.emit('button5click');
+                });
+
+                document.querySelector('#button5').addEventListener('dblclick', function(){
+                    socket.emit('button5dblclick');
+                });
+
+                document.querySelector('#button6').addEventListener('click', function(){
+                    socket.emit('button6click');
+                });
+
+                document.querySelector('#button6').addEventListener('dblclick', function(){
+                    socket.emit('button6dblclick');
+                });
+
+                document.querySelector('#button7').addEventListener('click', function(){
+                    socket.emit('button7click');
+                });
+
+                document.querySelector('#button7').addEventListener('dblclick', function(){
+                    socket.emit('button7dblclick');
+                });
+
+                document.querySelector('#button8').addEventListener('click', function(){
+                    socket.emit('button8click');
+                });
+
+                document.querySelector('#button8').addEventListener('dblclick', function(){
+                    socket.emit('button8dblclick');
+                });
+
+                document.querySelector('#button9').addEventListener('click', function(){
+                    socket.emit('button9click');
+                });
+
+                document.querySelector('#button9').addEventListener('dblclick', function(){
+                    socket.emit('button9dblclick');
+                });
+
+            
+                //listen to event from server
+                socket.on('button1_color_change', (data) => {
+                    let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
+                    console.log('button 1 color change:' + colorStr);
+                    //changine button color
+                    document.getElementById("button1").style.backgroundColor= colorStr;
+                });
+
+                socket.on('button2_color_change', (data) => {
+                    let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
+                    console.log('button 2 color change:' + colorStr);
+                    //changine button color
+                    document.getElementById("button2").style.backgroundColor= colorStr;
+                });
+
+                socket.on('button3_color_change', (data) => {
+                    let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
+                    console.log('button 3 color change:' + colorStr);
+                    //changine button color
+                    document.getElementById("button3").style.backgroundColor= colorStr;
+                });
+
+                socket.on('button4_color_change', (data) => {
+                    let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
+                    console.log('button 4 color change:' + colorStr);
+                    //changine button color
+                    document.getElementById("button4").style.backgroundColor= colorStr;
+                });
+
+                socket.on('button5_color_change', (data) => {
+                    let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
+                    console.log('button 5 color change:' + colorStr);
+                    //changine button color
+                    document.getElementById("button5").style.backgroundColor= colorStr;
+                });
+
+                socket.on('button6_color_change', (data) => {
+                    let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
+                    console.log('button 6 color change:' + colorStr);
+                    //changine button color
+                    document.getElementById("button6").style.backgroundColor= colorStr;
+                });
+
+                socket.on('button7_color_change', (data) => {
+                    let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
+                    console.log('button 7 color change:' + colorStr);
+                    //changine button color
+                    document.getElementById("button7").style.backgroundColor= colorStr;
+                });
+
+                socket.on('button8_color_change', (data) => {
+                    let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
+                    console.log('button 8 color change:' + colorStr);
+                    //changine button color
+                    document.getElementById("button8").style.backgroundColor= colorStr;
+                });
+
+                socket.on('button9_color_change', (data) => {
+                    let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
+                    console.log('button 9 color change:' + colorStr);
+                    //changine button color
+                    document.getElementById("button9").style.backgroundColor= colorStr;
+                });
+            });
+
+        </script>
+    </body>
+</html>
